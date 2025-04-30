@@ -1,0 +1,41 @@
+{
+  "name": "aem-tag-import",
+  "version": "1.0.0",
+  "description": "Create AEM package to import tags from a CSV file.",
+  "main": "dist/index.js",
+  "bin": {
+    "aem-tag-import": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aem",
+    "adobe",
+    "package",
+    "import",
+    "cli",
+    "tag"
+  ],
+  "author": "Ethan Grant",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "convert-csv-to-json": "^2.50.0",
+    "figlet": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/figlet": "^1.7.0",
+    "@types/node": "^18.19.3",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
