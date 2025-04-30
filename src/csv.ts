@@ -21,11 +21,16 @@ export function getCsvData(csvPath: string): TagCsv[] {
     const json = ConvertCsvToJson.fieldDelimiter(', ')
         .getJsonFromCsv(csvPath);
 
-    const isValidTagData = (data: any): data is TagCsv => {
+    const isValidTagData = (data: unknown): data is TagCsv => {
         return typeof data === 'object'
-            && typeof data.Namespace === 'string'
-            && typeof data.Tag === 'string';
+            && data !== null
+            && data !== undefined
+            && 'Namespace' in data
+            && 'Tag' in data
+            && typeof (data as TagCsv).Namespace === 'string'
+            && typeof (data as TagCsv).Tag === 'string';
     };
+
 
     if (!Array.isArray(json) || !json.every(isValidTagData)) {
         throw new Error(chalk.red('Invalid CSV structure. Expected columns: Namespace, Tag'));
