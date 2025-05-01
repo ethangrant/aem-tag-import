@@ -44,8 +44,8 @@ export default class PackageModifier {
         const tagFolderPath = path.join(this.unzippedPath, 'jcr_root', 'content', '_cq_tags');
 
         tagsData.forEach((row) => {
-            const namespace = row.Namespace;
-            const tag = row.Tag;
+            const namespace = row.Namespace.toLowerCase().replace(/\s+/g, '-');
+            const tag = row.Tag.toLowerCase().replace(/\s+/g, '-');
             const namespacePath = path.join(tagFolderPath, namespace);
             const tagPath = path.join(namespacePath, tag);
 
