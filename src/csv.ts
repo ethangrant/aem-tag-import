@@ -11,14 +11,15 @@ export interface TagCsv {
  * Reads a CSV file from the specified path and converts its content into an array of TagCsv objects.
  *
  * @param {string} csvPath
+ * @param {string} delimeter
  * @return {TagCsv[]}
  */
-export function getCsvData(csvPath: string): TagCsv[] {
+export function getCsvData(csvPath: string, delimeter: string = ', '): TagCsv[] {
     if (!fs.existsSync(csvPath)) {
         throw new Error(`CSV file not found: ${csvPath}`);
     }
 
-    const json = ConvertCsvToJson.fieldDelimiter(', ')
+    const json = ConvertCsvToJson.fieldDelimiter(delimeter)
         .getJsonFromCsv(csvPath);
 
     const isValidTagData = (data: unknown): data is TagCsv => {

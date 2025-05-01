@@ -55,24 +55,29 @@ export default class PackageModifier {
                     console.log(chalk.blue(`✓ Namespace directory created: ${chalk.cyan(namespacePath)}`));
                 }
 
+                this.writeTagContentXml(namespacePath, namespace);
+
                 if(!fs.existsSync(tagPath)) {
                     fs.mkdirSync(tagPath);
                     console.log(chalk.blue(`✓ Tag directory created: ${chalk.cyan(tagPath)}`));
                 }
 
-                const fullPath = path.join(tagPath, '.content.xml');
-                fs.copyFileSync(path.join(process.cwd(), 'fixtures/.content.xml'), fullPath);
-
-                const content = fs.readFileSync(fullPath, 'utf8');
-                const newContent = content.replace(/TAG_NAME/g, tag);
-                fs.writeFileSync(fullPath, newContent, 'utf8');
-                console.log(chalk.blue(`✓ Updated content in file: ${chalk.cyan(fullPath)} \n`));
+                this.writeTagContentXml(tagPath, tag);
             } catch (err) {
                 throw new Error(`Failed to process tag ${tag} in namespace ${namespace}: ${err}`);
             }
         });
     }
 
+    private writeTagContentXml(pathToXml: string, tag: string) {
+        const fullPath = path.join(pathToXml, '.content.xml');
+        fs.copyFileSync(path.join(process.cwd(), 'fixtures/.content.xml'), fullPath);
+
+        const content = fs.readFileSync(fullPath, 'utf8');
+        const newContent = content.replace(/TAG_NAME/g, tag);
+        fs.writeFileSync(fullPath, newContent, 'utf8');
+        console.log(chalk.blue(`✓ Updated content in file: ${chalk.cyan(fullPath)} \n`));
+    }
 
     /**
      * Unzips the package file
