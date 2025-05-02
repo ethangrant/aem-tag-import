@@ -13,7 +13,7 @@ program
   .description("Create AEM package to import tags from a CSV file.")
   .requiredOption("-c, --csv-path <value>", "Path to CSV Import File.")
   .requiredOption("-p, --package-path <value>", "Path to Package With Existing Tags.")
-    .option("-d, --delimiter <value>", "Define CSV delimiter", ' ,')
+    .option("-d, --delimiter <value>", "Define CSV delimiter", ',')
     .option("-u, --unzipped-path <value>", "Path to unzip the package", 'pkg_unzipped')
   .parse(process.argv);
 

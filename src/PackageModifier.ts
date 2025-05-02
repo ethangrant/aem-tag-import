@@ -55,14 +55,14 @@ export default class PackageModifier {
                     console.log(chalk.blue(`✓ Namespace directory created: ${chalk.cyan(namespacePath)}`));
                 }
 
-                this.writeTagContentXml(namespacePath, namespace);
+                this.writeTagContentXml(namespacePath, row.Namespace);
 
                 if(!fs.existsSync(tagPath)) {
                     fs.mkdirSync(tagPath);
                     console.log(chalk.blue(`✓ Tag directory created: ${chalk.cyan(tagPath)}`));
                 }
 
-                this.writeTagContentXml(tagPath, tag);
+                this.writeTagContentXml(tagPath, row.Tag);
             } catch (err) {
                 throw new Error(`Failed to process tag ${tag} in namespace ${namespace}: ${err}`);
             }

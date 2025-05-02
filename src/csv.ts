@@ -14,7 +14,7 @@ export interface TagCsv {
  * @param {string} delimeter
  * @return {TagCsv[]}
  */
-export function getCsvData(csvPath: string, delimeter: string = ', '): TagCsv[] {
+export function getCsvData(csvPath: string, delimeter: string = ','): TagCsv[] {
     if (!fs.existsSync(csvPath)) {
         throw new Error(`CSV file not found: ${csvPath}`);
     }
@@ -22,6 +22,8 @@ export function getCsvData(csvPath: string, delimeter: string = ', '): TagCsv[] 
     const json = ConvertCsvToJson.fieldDelimiter(delimeter)
         .getJsonFromCsv(csvPath);
 
+    console.log(delimeter);
+    console.log(json);
     const isValidTagData = (data: unknown): data is TagCsv => {
         return typeof data === 'object'
             && data !== null
