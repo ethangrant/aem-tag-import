@@ -1,6 +1,6 @@
 {
   "name": "aem-tag-import",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create AEM package to import tags from a CSV file.",
   "main": "dist/index.js",
   "bin": {

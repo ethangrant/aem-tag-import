@@ -9,7 +9,7 @@ const program = new Command();
 console.log(figlet.textSync("AEM Tag Import"));
 
 program
-  .version("1.0.3")
+  .version("1.0.4")
   .description("Create AEM package to import tags from a CSV file.")
   .requiredOption("-c, --csv-path <value>", "Path to CSV Import File.")
   .requiredOption("-p, --package-path <value>", "Path to Package With Existing Tags.")
